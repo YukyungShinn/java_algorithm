@@ -1,41 +1,50 @@
 package java_algorithm.inflearn.sec2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class _6뒤집은소수 {
 
-	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
-		int n=sc.nextInt();
-		int[] arr=new int[n];
-		String[][] reverse=new String[n][1];
+    public static void main(String[] args) {
 
-		for(int i=0;i<n;i++) {
-			int a=sc.nextInt();
-			arr[i]=a;
-			String strA=Integer.toString(a);
-			int lenA=strA.length();
-			String strB="";
-			for(int j=0;j<lenA;j++) {
-			//Integer.parseInt쓰면 0을없애줌 , StringBuilder 에 뒤집는게있음
-				if(strA.charAt(lenA-1-j)!='0') {
-				strB+=strA.charAt(lenA-1-j);
-				}
-			}
-			int B=Integer.parseInt(strB);
-//			System.out.print(B+" ");
-//			System.out.println("=========");
-			int chk=0;
-			for(int k=2;k<B;k++) {
-				if(B%k==0) {
-					chk+=1;
-				}
-			}
-			if(chk==0&&(B!=1)) {
-				System.out.print(B+" ");
-			}
-		}
+        Scanner in = new Scanner(System.in);
+        int size =in.nextInt();
+        String[] arr = new String[size];
+        // 입력받은 수를 저장
+        for( int i=0; i<size; i++){
+            arr[i] = in.next();
+        }
 
-	}
+        List<Integer> list = new ArrayList<>();
+
+        for(int i=0; i<size; i++){
+        	// 수를 뒤집어 저장
+            int tmp = Integer.parseInt(new StringBuilder(arr[i]).reverse().toString());
+            Boolean b = isPrime(tmp);
+
+            if(b){
+                list.add(tmp);
+            }
+        }
+
+        for (Integer integer : list) {
+            System.out.print(integer+" ");
+        }
+
+    }
+    
+    // 소수인지 판별하는 함수
+    public static Boolean isPrime(int num){
+        if( num == 1){
+            return false;
+        }
+        for(int i=2; i<num/2; i++){
+            if(num%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
