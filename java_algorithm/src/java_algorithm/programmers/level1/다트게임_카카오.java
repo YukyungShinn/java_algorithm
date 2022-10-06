@@ -10,7 +10,7 @@ public class 다트게임_카카오 {
         
         // 1. dartResult 문자열 탐색.
         for(int i = 0;i<dartResult.length();i++){
-            // 1-1. 문자열의 각 문자에 따라 조건 처리.
+            // 1-1. 문자열의 각 문자에 따라 
             switch(dartResult.charAt(i)){
                 // 1-2. *인 경우는 자신과 이전의 점수 *2, idx는 S,D,T 처리 후 증가하기 때문에 idx-1, idx-2 후 *2    
                 case '*':
