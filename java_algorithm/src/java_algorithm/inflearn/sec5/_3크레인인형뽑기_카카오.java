@@ -18,25 +18,29 @@ public class _3크레인인형뽑기_카카오 {
 		for(int i=0;i<m;i++) {
 			moves[i]=sc.nextInt();
 		}
-		
+		//stack 마지막 뽑는 함수 peek()
 		Stack<Integer> st=new Stack<Integer>();
+		//st.peek()
 		int ans=0;
-		int stLast=0;
+		pick:
 		for(int i=0;i<m;i++) {
 			out:
 			for(int j=0;j<n;j++) {
 				if(arr[j][moves[i]-1]!=0) {
 //					System.out.println("지금뽑은애 = "+arr[j][moves[i]-1]);
-					if(stLast==arr[j][moves[i]-1]) {
+					if(st.empty())
+					{	
+						st.push(arr[j][moves[i]-1]);
+						arr[j][moves[i]-1]=0;
+						continue pick;
+					}
+					if(st.peek()==arr[j][moves[i]-1]) {
 						st.pop();
 						arr[j][moves[i]-1]=0;
 						ans+=2;
-						stLast=st.get(st.size()-1);
 						break out;
 					}else {
 					st.push(arr[j][moves[i]-1]);
-					stLast=arr[j][moves[i]-1];
-//					System.out.println("stLast = "+stLast);
 					arr[j][moves[i]-1]=0;
 					break out;
 					}
